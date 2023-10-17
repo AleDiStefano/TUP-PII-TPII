@@ -1,15 +1,12 @@
 from abc import ABC, abstractmethod
 
-class Usuario(ABC):
 
+class Usuario(ABC):
     def __init__(self, nombre: str, apellido: str, email: str, contrasenia: str) -> None:
         self._nombre = nombre
         self._apellido = apellido
         self._email = email
         self._contrasenia = contrasenia
-        
-    def __str__(self) -> str:
-        return f"{self._nombre} {self._apellido}"
     
     @property
     def nombre(self) -> str:
@@ -29,13 +26,24 @@ class Usuario(ABC):
         
     @property
     def email(self) -> str:
-        return self._email.title()
+        return self._email
 
     @email.setter
     def email(self, nuevo_email: str):
         self._email = nuevo_email
+        
+    @property
+    def contrasenia(self) -> str:
+        return self._contrasenia
             
-        @contrasenia.setter
-        def contrasenia(self, nueva_contrasenia: str):
-            self._contrasenia = nueva_contrasenia
+    @contrasenia.setter
+    def contrasenia(self, nueva_contrasenia: str):
+        self._contrasenia = nueva_contrasenia
     
+    @abstractmethod
+    def __str__(self) -> str:
+        raise NotImplementedError
+    
+    @abstractmethod
+    def validar_credenciales(self, email, contrasenia) -> bool:
+        return self.email == email and self.contrasenia == contrasenia

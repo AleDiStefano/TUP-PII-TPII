@@ -1,27 +1,38 @@
 from usuario import *
+from curso import *
 
-class estudiante(Usuario):
-    
-    def __init__(self,nombre,apellido,email,contrasenia,legajo,anio_inscripcion_carrera) -> None:
+class Estudiante(Usuario):
+    def __init__(self,nombre:str,apellido:str,email:str,contrasenia:str,legajo:int,anio_inscripcion_carrera:int) -> None:
         super().__init__(nombre,apellido,email,contrasenia)
-        self._legajo = legajo
-        self._anio_inscripcion_carrera = anio_inscripcion_carrera
-
+        self.__legajo = legajo
+        self.__anio_inscripcion_carrera = anio_inscripcion_carrera
+        self.__mis_cursos = []
+        
     def __str__(self) -> str:
-        return f"El estudiante se llama: {super()._nombre} {super()._apellido} con legajo {self._legajo}"
+        return f"El estudiante se llama: {self.nombre} {self.apellido} con legajo {str(self.__legajo)}"
     
     @property
     def legajo(self) -> str:
-        return self._legajo.title()
-
+        return self.__legajo.title()
     @legajo.setter
     def legajo(self, nuevo_legajo: str):
-        self._legajo = nuevo_legajo
+        self.__legajo = nuevo_legajo
     
     @property
     def anio_inscripcion_carrera(self) -> str:
-        return self._anio_inscripcion_carrera.title()
-
+        return self.__anio_inscripcion_carrera.title()
+    
     @anio_inscripcion_carrera.setter
     def anio_inscripcion_carrera(self, nuevo_anio_inscripcion_carrera: str):
-        self._anio_inscripcion_carrera = nuevo_anio_inscripcion_carrera
+        self.__anio_inscripcion_carrera = nuevo_anio_inscripcion_carrera
+    
+    def matricular_en_curso(self,curso):
+        self.__mis_cursos.append(curso)
+    
+    def validar_credenciales(self, email, contrasenia):
+        pass
+
+
+
+
+
