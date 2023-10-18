@@ -1,18 +1,18 @@
 from profesor import *
 from estudiante import *
 from curso import *
-
+# juan@gmail.com
 estudiantes = [
     Estudiante("Gaston", "Koch", "gaston@gmail.com", "gaston1", 1, 2020),
     Estudiante("Alejandro", "Di Stefano", "alejandro@gmail.com", "aleandro2", 2, 2019),
     Estudiante("Julian", "Becerra", "julian@gmail.com", "julian3", 3, 2021),
-    Estudiante("Juan", "Perez", "juan@gmail.com", "juan4", 4, 2018),
+    Estudiante("Juan", "Perez", "j", "juan4", 4, 2018),
     Estudiante("Arturo", "Vidal", "arturo@gmail.com", "arturo5", 5, 2022),
     Estudiante("Enzo", "Perez", "enzo@gmail.com", "enzo6", 6, 2017)
 ]
-
+# nelson@gmail.com
 profesores = [
-    Profesor("Nelson", "Andres", "nelson@gmail.com", "nelson1", "Ingeniero Industrial", 2020),
+    Profesor("Nelson", "Andres", "n", "nelson1", "Ingeniero Industrial", 2020),
     Profesor("Jorge", "Magallan", "jorge@gmail.com", "jorge2", "Ingeniero Civil", 2019),
     Profesor("Pedro", "Ruiz", "pedro@gmail.com", "pedro3", "Abogado", 2021),
     Profesor("Lionel", "Suarez", "lionel@gmail.com", "lionel4", "Contador", 2018),
@@ -62,11 +62,22 @@ while True:
                         else:
                             print("Ingrese una opcion desde el 1 al 3")
                             
-                    # SE CONTINUA ACA
                     if opcion == 1:
-                        pass
+                        while True:
+                            print("Seleccione el curso")
+                            for indice,curso in enumerate(cursos):
+                                print(f"{indice + 1} - {curso.nombre}")
+                            op = int(input())
+                            if opcion >= 1 and opcion <= 5:
+                                break
+                            else:
+                                print("Ingrese una opcion desde el 1 al 5")
+                                
+                        cursoEst = cursos[op-1]
+                        estudiante.matricular_en_curso(cursoEst)
                     elif opcion == 2:
-                        pass
+                        mostrarCurso = estudiante.mis_cursos
+                        print(mostrarCurso)
                     elif opcion == 3:
                         pass
                 else:
@@ -94,12 +105,14 @@ while True:
                             break
                         else:
                             print("Ingrese una opcion desde el 1 al 3")
-                        if opcion == 1:
-                            pass
-                        elif opcion == 2:
-                            pass
-                        elif opcion == 3:
-                            pass
+                    if opcion == 1:
+                        nombre_curso = input("Ingrese el nombre del curso que desea dictar: ")
+                        curso_nuevo = profesor.dictar_cursos(nombre_curso)
+                    elif opcion == 2:
+                        mostrarCursoDictado = profesor.mis_cursos
+                        print(mostrarCursoDictado)
+                    elif opcion == 3:
+                        pass
                 else:
                     print("Error de ingreso")
                     
@@ -112,44 +125,4 @@ while True:
             print(f"Materia:{curso.nombre} Carrera: Tecnicatura Universitaria en Programación")
             
     elif opt == 4:
-        pass
-
-
-
-    # encontrado = False
-    # contrasenia_valida = False
-    # email = input("Ingrese su email: ")
-    # contrasenia = input("Ingrese su contraseña: ")
-    # for estudiante in estudiantes:
-    #     if estudiante.email == email:
-    #         encontrado = True
-    #         for password in estudiantes:
-    #             if password.contrasenia == contrasenia:
-    #                 print("Acceso al sistema ")
-    #                 contrasenia_valida = True
-    #                 # while True:
-    #                 #     print("1. Matricularse a un curso")
-    #                 #     print("2. Ver curso")
-    #                 #     print("3. Volver al menú principal")
-    #                 #     opcion = int(input())
-    #                 #     if opcion >= 1 and opcion <= 3:
-    #                 #         break
-    #                 #     else:
-    #                 #         print("Ingrese una opcion desde el 1 al 3")
-                    
-                    
-                    
-    #         if(contrasenia_valida == False):
-    #             print("Error de ingreso")
-                    
-    # if(encontrado == False):
-    #     print("Debe darse de alta en el alumnado")
-    
-    
-    
-                # for password in profesores:
-            #     if password.contrasenia == contraseniaPro:
-            #         print("Credenciales validas")
-            #         contrasenia_valida = True
-                    
-            # if contrasenia_valida == False:
+        break

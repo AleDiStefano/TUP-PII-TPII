@@ -22,17 +22,35 @@ class Profesor(Usuario):
     @anio_egreso.setter
     def anio_egreso(self, nuevo_anio_egreso: str):
         self.__anio_egreso = nuevo_anio_egreso
+    
+    @property
+    def mis_cursos(self):
+        #Esto es una copia de lo mismo que estudiante falta testear
+        if self.__mis_cursos:
+            while True:
+                indice = 0
+                print("Ingrese que curso desea ver")
+                for indice,curso in enumerate(self.__mis_cursos):
+                    print(f"{indice + 1} - {curso.nombre}")
+                opcion = int(input())
+                if opcion >= 1 and opcion <= indice + 1:
+                    return f"Nombre: {self.__mis_cursos[opcion - 1]}"
+                else:
+                    print("Debe ingresar un numero de indice valido")
+        else:
+            return "Usted no a dictado ningun curso"
         
     def __str__(self) -> str:
         return f"El profesor se llama: {self.nombre} {self.apellido} con titulo {self.__titulo}"
     
     def validar_credenciales(self, email, contrasenia):
-        pass
+        return self.email == email and self.contrasenia == contrasenia
 
     def dictar_cursos(self,nombre_curso):
         curso = Curso(nombre_curso) 
         self.__mis_cursos.append(curso)
         return curso
+    
 
 
 

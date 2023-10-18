@@ -46,4 +46,4 @@ class Usuario(ABC):
     
     @abstractmethod
     def validar_credenciales(self, email, contrasenia) -> bool:
-        return self.email == email and self.contrasenia == contrasenia
+        return True if self.email == email and self.contrasenia == contrasenia else False
