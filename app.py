@@ -1,32 +1,34 @@
 from profesor import *
 from estudiante import *
 from curso import *
-# juan@gmail.com
-estudiantes = [
-    Estudiante("Gaston", "Koch", "gaston@gmail.com", "gaston1", 1, 2020),
-    Estudiante("Alejandro", "Di Stefano", "alejandro@gmail.com", "aleandro2", 2, 2019),
-    Estudiante("Julian", "Becerra", "julian@gmail.com", "julian3", 3, 2021),
-    Estudiante("Juan", "Perez", "j", "juan4", 4, 2018),
-    Estudiante("Arturo", "Vidal", "arturo@gmail.com", "arturo5", 5, 2022),
-    Estudiante("Enzo", "Perez", "enzo@gmail.com", "enzo6", 6, 2017)
-]
-# nelson@gmail.com
-profesores = [
-    Profesor("Nelson", "Andres", "n", "nelson1", "Ingeniero Industrial", 2020),
-    Profesor("Jorge", "Magallan", "jorge@gmail.com", "jorge2", "Ingeniero Civil", 2019),
-    Profesor("Pedro", "Ruiz", "pedro@gmail.com", "pedro3", "Abogado", 2021),
-    Profesor("Lionel", "Suarez", "lionel@gmail.com", "lionel4", "Contador", 2018),
-    Profesor("Marcos", "Raiti", "marcos@gmail.com", "marcos5", "Medico", 2022),
-    Profesor("Norberto", "Ochoa", "norberto@gmail.com", "norberto6", "Programador", 2017)
-]
+from data import *
+from data_cursos import *
+# # juan@gmail.com
+# estudiantes = [
+#     Estudiante("Gaston", "Koch", "gaston@gmail.com", "gaston1", 1, 2020),
+#     Estudiante("Alejandro", "Di Stefano", "alejandro@gmail.com", "aleandro2", 2, 2019),
+#     Estudiante("Julian", "Becerra", "julian@gmail.com", "julian3", 3, 2021),
+#     Estudiante("Juan", "Perez", "j", "juan4", 4, 2018),
+#     Estudiante("Arturo", "Vidal", "arturo@gmail.com", "arturo5", 5, 2022),
+#     Estudiante("Enzo", "Perez", "enzo@gmail.com", "enzo6", 6, 2017)
+# ]
+# # nelson@gmail.com
+# profesores = [
+#     Profesor("Nelson", "Andres", "n", "nelson1", "Ingeniero Industrial", 2020),
+#     Profesor("Jorge", "Magallan", "jorge@gmail.com", "jorge2", "Ingeniero Civil", 2019),
+#     Profesor("Pedro", "Ruiz", "pedro@gmail.com", "pedro3", "Abogado", 2021),
+#     Profesor("Lionel", "Suarez", "lionel@gmail.com", "lionel4", "Contador", 2018),
+#     Profesor("Marcos", "Raiti", "marcos@gmail.com", "marcos5", "Medico", 2022),
+#     Profesor("Norberto", "Ochoa", "norberto@gmail.com", "norberto6", "Programador", 2017)
+# ]
 
-cursos = [
-    Curso("Programación I"),
-    Curso("Programación II"),
-    Curso("Laboratorio II"),
-    Curso("Ingles I"),
-    Curso("Ingles II")
-]
+# cursos = [
+#     Curso("Programación I"),
+#     Curso("Programación II"),
+#     Curso("Laboratorio II"),
+#     Curso("Ingles I"),
+#     Curso("Ingles II")
+# ]
 
 def menu():
     while True:
@@ -66,15 +68,16 @@ while True:
                         while True:
                             print("Seleccione el curso")
                             for indice,curso in enumerate(cursos):
-                                print(f"{indice + 1} - {curso.nombre}")
+                                # borrar contraseña (es testing)
+                                print(f"{indice + 1} - {curso.nombre} - {curso.contrasenia_matricula}")
                             op = int(input())
                             if opcion >= 1 and opcion <= 5:
                                 break
                             else:
                                 print("Ingrese una opcion desde el 1 al 5")
-                                
-                        cursoEst = cursos[op-1]
-                        estudiante.matricular_en_curso(cursoEst)
+                        contraseniaEst = input("Ingrese la matricula del curso: ")
+                        cursoEst = cursos[op-1].nombre
+                        estudiante.matricular_en_curso(cursoEst,contraseniaEst)
                     elif opcion == 2:
                         mostrarCurso = estudiante.mis_cursos
                         print(mostrarCurso)

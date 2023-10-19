@@ -1,6 +1,6 @@
 from usuario import *
 from curso import *
-
+from data_cursos import *
 
 class Estudiante(Usuario):
     def __init__(self,nombre:str,apellido:str,email:str,contrasenia:str,legajo:int,anio_inscripcion_carrera:int) -> None:
@@ -34,7 +34,7 @@ class Estudiante(Usuario):
                 indice = 0
                 print("Ingrese que curso desea ver")
                 for indice,curso in enumerate(self.__mis_cursos):
-                    print(f"{indice + 1} - {curso.nombre}")
+                    print(f"{indice + 1} - {curso}")
                 opcion = int(input())
                 if opcion >= 1 and opcion <= indice + 1:
                     return f"Nombre: {self.__mis_cursos[opcion - 1].nombre}" # Esto tiene devolver solo el nombre del curso, sin la contraseña
@@ -61,12 +61,21 @@ class Estudiante(Usuario):
     
     # Testing 1
     def matricular_en_curso(self,curso,contrasenia):
+        curso_valido = False
         if curso in self.__mis_cursos:
             print(f"Usted ya se encuentra inscripto en {curso}")
         else:
-            if contrasenia == Curso.contrasenia_matricula:
-                self.__mis_cursos.append(curso)
-    
+            for i in cursos:
+                if i.nombre == curso and i.contrasenia_matricula == contrasenia:
+                    print(i.contrasenia_matricula)
+                    self.__mis_cursos.append(curso)
+                    curso_valido = True
+                    break
+            if (curso_valido):
+                print("Curso agregado con exito") 
+            else:
+                print("La contraseña es invalida")
+
     def validar_credenciales(self, email, contrasenia):
         return self.email == email and self.contrasenia == contrasenia
 
