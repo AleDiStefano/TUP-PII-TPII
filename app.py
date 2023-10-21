@@ -3,32 +3,7 @@ from estudiante import *
 from curso import *
 from data import *
 from data_cursos import *
-# # juan@gmail.com
-# estudiantes = [
-#     Estudiante("Gaston", "Koch", "gaston@gmail.com", "gaston1", 1, 2020),
-#     Estudiante("Alejandro", "Di Stefano", "alejandro@gmail.com", "aleandro2", 2, 2019),
-#     Estudiante("Julian", "Becerra", "julian@gmail.com", "julian3", 3, 2021),
-#     Estudiante("Juan", "Perez", "j", "juan4", 4, 2018),
-#     Estudiante("Arturo", "Vidal", "arturo@gmail.com", "arturo5", 5, 2022),
-#     Estudiante("Enzo", "Perez", "enzo@gmail.com", "enzo6", 6, 2017)
-# ]
-# # nelson@gmail.com
-# profesores = [
-#     Profesor("Nelson", "Andres", "n", "nelson1", "Ingeniero Industrial", 2020),
-#     Profesor("Jorge", "Magallan", "jorge@gmail.com", "jorge2", "Ingeniero Civil", 2019),
-#     Profesor("Pedro", "Ruiz", "pedro@gmail.com", "pedro3", "Abogado", 2021),
-#     Profesor("Lionel", "Suarez", "lionel@gmail.com", "lionel4", "Contador", 2018),
-#     Profesor("Marcos", "Raiti", "marcos@gmail.com", "marcos5", "Medico", 2022),
-#     Profesor("Norberto", "Ochoa", "norberto@gmail.com", "norberto6", "Programador", 2017)
-# ]
 
-# cursos = [
-#     Curso("Programación I"),
-#     Curso("Programación II"),
-#     Curso("Laboratorio II"),
-#     Curso("Ingles I"),
-#     Curso("Ingles II")
-# ]
 
 def menu():
     while True:
@@ -69,7 +44,7 @@ while True:
                             print("Seleccione el curso")
                             for indice,curso in enumerate(cursos):
                                 # borrar contraseña (es testing)
-                                print(f"{indice + 1} - {curso.nombre} - {curso.contrasenia_matricula}")
+                                print(f"{indice + 1} - {curso.nombre}")
                             op = int(input())
                             if opcion >= 1 and opcion <= 5:
                                 break
@@ -125,7 +100,7 @@ while True:
     elif opt == 3:
         cursos_ordenados = sorted(cursos, key=lambda curso: curso.nombre)
         for curso in cursos_ordenados:
-            print(f"Materia:{curso.nombre} Carrera: Tecnicatura Universitaria en Programación")
+            print(f"Materia:{curso.nombre}       Carrera: Tecnicatura Universitaria en Programación")
             
     elif opt == 4:
         break

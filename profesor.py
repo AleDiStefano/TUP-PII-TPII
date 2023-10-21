@@ -35,7 +35,7 @@ class Profesor(Usuario):
                     print(f"{indice + 1} - {curso.nombre}")
                 opcion = int(input())
                 if opcion >= 1 and opcion <= indice + 1:
-                    return f"Nombre: {self.__mis_cursos[opcion - 1]}"
+                    return f"{self.__mis_cursos[opcion - 1]}"
                 else:
                     print("Debe ingresar un numero de indice valido")
         else:
@@ -51,8 +51,6 @@ class Profesor(Usuario):
         curso = Curso(nombre_curso) 
         self.__mis_cursos.append(curso)
         cursos.append(curso)
-        for x in cursos:
-            print(x)
         return curso
     
 

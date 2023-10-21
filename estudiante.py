@@ -37,29 +37,12 @@ class Estudiante(Usuario):
                     print(f"{indice + 1} - {curso}")
                 opcion = int(input())
                 if opcion >= 1 and opcion <= indice + 1:
-                    return f"Nombre: {self.__mis_cursos[opcion - 1].nombre}" # Esto tiene devolver solo el nombre del curso, sin la contraseña
+                    return f"Nombre: {self.__mis_cursos[opcion - 1]}" # Esto tiene devolver solo el nombre del curso, sin la contraseña
                 else:
                     print("Debe ingresar un numero de indice valido")
         else:
             return "Usted no se encuentra anotado a ningun curso"
-        # for curso in self.__mis_cursos:
-        #     print(curso)
-    
-    # @mis_cursos.setter
-    # def mis_cursos(self,curso):
-    #     self.__mis_cursos.append(curso)
 
-    # def matricular_en_curso(self,curso):
-    #     if curso in self.__mis_cursos:
-    #         print(f"Usted ya se encuentra inscripto en {curso}")
-    #     else:
-    #         self.__mis_cursos.append(curso)
-        # FALTA VALIDACION DE MATRICULA PREGUNTAR
-        # Como hacer para saber cual es la contraseña de los cursos desde aca
-        # Como parametro tenemos que enviar la contrasenia tambien. 
-        # Hay que cargar cursos con profesor y probarlo despues aca
-    
-    # Testing 1
     def matricular_en_curso(self,curso,contrasenia):
         curso_valido = False
         if curso in self.__mis_cursos:
@@ -67,7 +50,6 @@ class Estudiante(Usuario):
         else:
             for i in cursos:
                 if i.nombre == curso and i.contrasenia_matricula == contrasenia:
-                    print(i.contrasenia_matricula)
                     self.__mis_cursos.append(curso)
                     curso_valido = True
                     break
