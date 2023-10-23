@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-
 class Usuario(ABC):
     def __init__(self, nombre: str, apellido: str, email: str, contrasenia: str) -> None:
         self._nombre = nombre

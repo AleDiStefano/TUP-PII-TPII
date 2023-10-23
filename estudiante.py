@@ -37,7 +37,7 @@ class Estudiante(Usuario):
                     print(f"{indice + 1} - {curso}")
                 opcion = int(input())
                 if opcion >= 1 and opcion <= indice + 1:
-                    return f"Nombre: {self.__mis_cursos[opcion - 1]}" # Esto tiene devolver solo el nombre del curso, sin la contraseña
+                    return f"Nombre: {self.__mis_cursos[opcion - 1]}"
                 else:
                     print("Debe ingresar un numero de indice valido")
         else:
@@ -59,8 +59,4 @@ class Estudiante(Usuario):
                 print("La contraseña es invalida")
 
     def validar_credenciales(self, email, contrasenia):
-        return self.email == email and self.contrasenia == contrasenia
-
-
-
-
+        return self.email.upper() == email.upper() and self.contrasenia == contrasenia

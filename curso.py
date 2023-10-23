@@ -23,5 +23,3 @@ class Curso():
     @property
     def contrasenia_matricula(self):
         return self.__contrasenia_matricula
-    
-    

@@ -26,7 +26,6 @@ class Profesor(Usuario):
     
     @property
     def mis_cursos(self):
-        #Esto es una copia de lo mismo que estudiante falta testear
         if self.__mis_cursos:
             while True:
                 indice = 0
@@ -45,14 +44,15 @@ class Profesor(Usuario):
         return f"El profesor se llama: {self.nombre} {self.apellido} con titulo {self.__titulo}"
     
     def validar_credenciales(self, email, contrasenia):
-        return self.email == email and self.contrasenia == contrasenia
+        return self.email.upper() == email.upper() and self.contrasenia == contrasenia
 
     def dictar_cursos(self,nombre_curso):
         curso = Curso(nombre_curso) 
-        self.__mis_cursos.append(curso)
-        cursos.append(curso)
-        return curso
-    
-
-
-
+        for cur in cursos:
+            if cur.nombre.upper() == nombre_curso.upper():
+                return print(f"El curso {nombre_curso} ya se encuentra cargado")
+        else:
+            self.__mis_cursos.append(curso)
+            cursos.append(curso)
+            print(f"Curso dado de alta exitosamente:\nNombre: {nombre_curso}\nMatricula: {curso.contrasenia_matricula}")
+            return curso
