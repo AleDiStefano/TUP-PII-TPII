@@ -49,13 +49,13 @@ while True:
                                 # borrar contraseña (es testing)
                                 print(f"{indice + 1} - {curso.nombre} - {curso.contrasenia_matricula}")
                             op = int(input())
-                            if opcion >= 1 and opcion <= 5:
-                                break
+                            if op >= 1 and op <= 5:
+                                cursoEst = cursos[op-1].nombre
+                                contraseniaEst = input("Ingrese la matricula del curso: ")
+                                estudiante.matricular_en_curso(cursoEst,contraseniaEst)
                             else:
                                 print("Ingrese una opcion desde el 1 al 5")
-                        contraseniaEst = input("Ingrese la matricula del curso: ")
-                        cursoEst = cursos[op-1].nombre
-                        estudiante.matricular_en_curso(cursoEst,contraseniaEst)
+                            break
                     elif opcion == 2:
                         i = 0
                         for indice,estudiante in enumerate(estudiantes):
@@ -67,6 +67,10 @@ while True:
                             i += 1                 
                     elif opcion == 3:
                         i = 0
+                        # ARREGLAR
+                        # Si no tiene ningun curso tiraba error de que esta variable no estaba definida (se define solo si entra al bucle)
+                        # hay que intentar arreglarlo desde la clase de estudiante, pero si no tiene cursos no entra directamente
+                        archivos_ordenados = []
                         for indice,estudiante in enumerate(estudiantes):
                             if emailEst == estudiantes[i].email:
                                 curso = estudiante.mis_cursos
@@ -74,8 +78,11 @@ while True:
                                     if curso == cursoItera.nombre:
                                         for archivo in cursoItera.archivo:
                                             archivos_ordenados = sorted(cursoItera.archivo, key=lambda archivo: archivo.fecha)
+                                # este break hace que corte la iteración una vez que encuentra el estudiante
+                                break
                             i += 1
-                        for archivos_ordenados in archivos_ordenados:
+                        for archivo_ordenado in archivos_ordenados:
+                            # ARREGLAR no esta funcionando el print de los archivos
                             print(archivos_ordenados)
                 else:
                     print("Error de ingreso, por favor intente nuevamente")
@@ -105,27 +112,41 @@ while True:
                     if opcion == 1:
                         nombre_curso = input("Ingrese el nombre del curso que desea dictar: ")
                         curso_nuevo = profesor.dictar_cursos(nombre_curso)
+                        # ARREGLAR: CUANDO DOY DE ALTA EL CURSO NO LO ESTOY DANDO DE ALTA EN LA CARRERA, la mayuscula parecia que estaba gritando perdon JAJJAJAJA
                     elif opcion == 2:
-                        mostrarCursoDictado,curso_elejido,lista_cursos = profesor.mis_cursos
-                        print(mostrarCursoDictado)
-                        op = input("\n Desea ingresar un archivo adjunto? S/N: ").upper()
-                        if op == "S":
-                            nombre_archivo = input("Ingrese el nombre: ")
-                            formato_archivo = input("Ingrese el formato: ")
-                            nombre_archivo = f"{nombre_archivo}.{formato_archivo}"
-                            lista_cursos[curso_elejido].nuevo_archivo(Archivo(nombre_archivo,formato_archivo))
-                            break
-                        elif op == "N":
-                            break
+                        tiene_cursos,mostrarCursoDictado,curso_elejido,lista_cursos = profesor.mis_cursos
+                        if tiene_cursos:
+                            print(mostrarCursoDictado)
+                            op = input("\n Desea ingresar un archivo adjunto? S/N: ").upper()
+                            if op == "S":
+                                nombre_archivo = input("Ingrese el nombre: ")
+                                formato_archivo = input("Ingrese el formato: ")
+                                nombre_archivo = f"{nombre_archivo}.{formato_archivo}"
+                                lista_cursos[curso_elejido].nuevo_archivo(Archivo(nombre_archivo,formato_archivo))
+                                break
+                            elif op == "N":
+                                break
+                            else:
+                                print("Opcion invalida")
                         else:
-                            print("Opcion invalida")
+                            print("Usted no a dictado ningun curso")
                     elif opcion == 3:
                         break
                 else:
                     print("Error de ingreso, por favor intente nuevamente")
                     
         if encontrado == False:
-            print("Usuario no cargado, debe darse de alta en el alumnado")
+            codigo_admin = input("Usuario no cargado, si desea darlo de alta ingrese el código de administrador: ")
+            if codigo_admin == 'admin':
+                nombrePro = input("Ingrese su nombre: ")
+                apellidoPro = input("Ingrese su apellido: ")
+                tituloPro = input("Ingrese su titulo: ")
+                anio_egresoPro = int(input("Ingrese su año de egreso: "))
+                nuevo_profesor = Profesor(nombrePro, apellidoPro, emailPro, contraseniaPro, tituloPro, anio_egresoPro)
+                profesores.append(nuevo_profesor)
+                print("Usuario agregado exitosamente, inicie sesion por primera vez")
+            else:
+                print("Código de administrador incorrecto")
         
     elif opt == 3:
         cursos_ordenados = sorted(cursos, key=lambda curso: curso.nombre)

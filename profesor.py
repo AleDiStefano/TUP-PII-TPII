@@ -35,11 +35,11 @@ class Profesor(Usuario):
                     print(f"{indice + 1} - {curso.nombre}")
                 opcion = int(input())
                 if opcion >= 1 and opcion <= indice + 1:
-                    return f"{self.__mis_cursos[opcion - 1]}",(opcion-1),self.__mis_cursos
+                    return True,f"{self.__mis_cursos[opcion - 1]}",(opcion-1),self.__mis_cursos
                 else:
                     print("Debe ingresar un numero de indice valido")
         else:
-            return "Usted no a dictado ningun curso"
+            return False,0,0,0
         
     def __str__(self) -> str:
         return f"El profesor se llama: {self.nombre} {self.apellido} con titulo {self.__titulo}"
