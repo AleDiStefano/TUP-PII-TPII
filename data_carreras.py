@@ -1,6 +1,7 @@
-from carrera import * 
-from data_cursos import *
+from carrera import *
 from data import *
+from data_cursos import *
+
 
 
 carreras = [

@@ -1,10 +1,11 @@
-from profesor import *
-from estudiante import *
+from archivo import *
 from curso import *
 from data import *
 from data_cursos import *
 from datetime import *
-from archivo import *
+from estudiante import *
+from profesor import *
+
 
 def menu():
     while True:

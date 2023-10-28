@@ -1,5 +1,5 @@
-from curso import *
 from archivo import *
+from curso import *
 from data import *
 
 cursos = [

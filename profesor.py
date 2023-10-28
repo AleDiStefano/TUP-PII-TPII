@@ -1,6 +1,7 @@
-from usuario import *
 from curso import *
 from data_cursos import *
+from usuario import *
+
 
 class Profesor(Usuario):
     def __init__(self,nombre:str,apellido:str,email:str,contrasenia:str,titulo:str,anio_egreso:int) -> None:
@@ -17,11 +18,11 @@ class Profesor(Usuario):
         self.__titulo = nuevo_titulo
     
     @property
-    def anio_egreso(self) -> str:
-        return self.__anio_egreso.title()
+    def anio_egreso(self) -> int:
+        return self.__anio_egreso
 
     @anio_egreso.setter
-    def anio_egreso(self, nuevo_anio_egreso: str) -> None:
+    def anio_egreso(self, nuevo_anio_egreso: int) -> None:
         self.__anio_egreso = nuevo_anio_egreso
     
     @property

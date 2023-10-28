@@ -1,6 +1,8 @@
-from usuario import *
 from curso import *
 from data_cursos import *
+from usuario import *
+
+
 
 class Estudiante(Usuario):
     def __init__(self,nombre:str,apellido:str,email:str,contrasenia:str,legajo:int,anio_inscripcion_carrera:int) -> None:
@@ -13,18 +15,18 @@ class Estudiante(Usuario):
         return f"El estudiante se llama: {self.nombre} {self.apellido} con legajo {str(self.__legajo)}"
     
     @property
-    def legajo(self) -> str:
+    def legajo(self) -> int:
         return self.__legajo.title()
     @legajo.setter
-    def legajo(self, nuevo_legajo: str) -> None:
+    def legajo(self, nuevo_legajo: int) -> None:
         self.__legajo = nuevo_legajo
     
     @property
-    def anio_inscripcion_carrera(self) -> str:
-        return self.__anio_inscripcion_carrera.title()
+    def anio_inscripcion_carrera(self) -> int:
+        return self.__anio_inscripcion_carrera
     
     @anio_inscripcion_carrera.setter
-    def anio_inscripcion_carrera(self, nuevo_anio_inscripcion_carrera: str) -> None:
+    def anio_inscripcion_carrera(self, nuevo_anio_inscripcion_carrera: int) -> None:
         self.__anio_inscripcion_carrera = nuevo_anio_inscripcion_carrera
     
     @property
@@ -37,7 +39,6 @@ class Estudiante(Usuario):
                     print(f"{indice + 1} - {curso}")
                 opcion = int(input())
                 if opcion >= 1 and opcion <= indice + 1:
-                    # return f"Nombre: {self.__mis_cursos[opcion - 1]}"
                     # Para desmatricularme necesito solo el nombre, para realizar el remove
                     return self.__mis_cursos[opcion - 1]
                 else:

@@ -1,6 +1,8 @@
-import random
-import string
 from archivo import *
+import string
+import random
+
+
 
 class Curso():
     __prox_codigo = int(0)
@@ -15,6 +17,7 @@ class Curso():
     @property
     def nombre(self) -> str:
         return self.__nombre
+    
     @nombre.setter
     def nombre(self,nuevo_nombre:str) -> None:
         self.__nombre = nuevo_nombre
@@ -22,14 +25,16 @@ class Curso():
     @property
     def contrasenia_matricula(self) -> str:
         return self.__contrasenia_matricula
+    
     @property
     def archivo(self) -> list:
         return self.__archivo
+    
     @property
     def codigo(self) -> int:
         return self.__codigo
     
-    @property
+    @classmethod
     def generar_contrasenia(cls) -> str:
         characters = string.ascii_letters + string.digits
         matricula = ''.join(random.choice(characters) for i in range(8))

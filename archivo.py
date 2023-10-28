@@ -23,11 +23,12 @@ class Archivo:
     
     @fecha.setter
     def fecha(self,fecha:date)-> None:
-        self.__nombre = fecha
+        self.__fecha = fecha
     
     @property
     def formato(self) -> str:
         return self.__formato
+    
     @formato.setter
     def formato(self,formato:str) -> None:
         self.__formato = formato

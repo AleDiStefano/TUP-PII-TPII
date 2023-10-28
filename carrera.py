@@ -1,5 +1,5 @@
-from data_cursos import *
 from curso import *
+from data_cursos import *
 from estudiante import *
 
 class Carrera:
@@ -23,7 +23,7 @@ class Carrera:
     
     @cant_anios.setter
     def cant_anios(self,nuevo_cant_anios) ->None:
-        self.cant_anios = nuevo_cant_anios
+        self.__cant_anios = nuevo_cant_anios
     
     @property
     def curso(self) -> list:
@@ -55,7 +55,6 @@ class Carrera:
     
     def get_cantidad_materias(self)->int:
         cantidad_materias = len(self.cursos)
-        print(cantidad_materias)
         return cantidad_materias
 
 
