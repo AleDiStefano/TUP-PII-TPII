@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-
 class Usuario(ABC):
     def __init__(self, nombre: str, apellido: str, email: str, contrasenia: str) -> None:
         self._nombre = nombre
@@ -13,7 +12,7 @@ class Usuario(ABC):
         return self._nombre.title()
 
     @nombre.setter
-    def nombre(self, nuevo_nombre: str):
+    def nombre(self, nuevo_nombre: str) -> None:
         self._nombre = nuevo_nombre
 
     @property
@@ -21,7 +20,7 @@ class Usuario(ABC):
         return self._apellido.title()
 
     @apellido.setter
-    def apellido(self, nuevo_apellido: str):
+    def apellido(self, nuevo_apellido: str) -> None:
         self._apellido = nuevo_apellido
         
     @property
@@ -29,7 +28,7 @@ class Usuario(ABC):
         return self._email
 
     @email.setter
-    def email(self, nuevo_email: str):
+    def email(self, nuevo_email: str) -> None:
         self._email = nuevo_email
         
     @property
@@ -37,7 +36,7 @@ class Usuario(ABC):
         return self._contrasenia
             
     @contrasenia.setter
-    def contrasenia(self, nueva_contrasenia: str):
+    def contrasenia(self, nueva_contrasenia: str) -> None:
         self._contrasenia = nueva_contrasenia
     
     @abstractmethod

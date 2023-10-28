@@ -13,7 +13,7 @@ class Profesor(Usuario):
         return self.__titulo.title()
 
     @titulo.setter
-    def titulo(self, nuevo_titulo: str):
+    def titulo(self, nuevo_titulo: str) -> None:
         self.__titulo = nuevo_titulo
     
     @property
@@ -21,12 +21,11 @@ class Profesor(Usuario):
         return self.__anio_egreso.title()
 
     @anio_egreso.setter
-    def anio_egreso(self, nuevo_anio_egreso: str):
+    def anio_egreso(self, nuevo_anio_egreso: str) -> None:
         self.__anio_egreso = nuevo_anio_egreso
     
     @property
-    def mis_cursos(self):
-        #Esto es una copia de lo mismo que estudiante falta testear
+    def mis_cursos(self) -> str:
         if self.__mis_cursos:
             while True:
                 indice = 0
@@ -35,7 +34,7 @@ class Profesor(Usuario):
                     print(f"{indice + 1} - {curso.nombre}")
                 opcion = int(input())
                 if opcion >= 1 and opcion <= indice + 1:
-                    return f"{self.__mis_cursos[opcion - 1]}"
+                    return f"{self.__mis_cursos[opcion - 1]}",(opcion-1),self.__mis_cursos
                 else:
                     print("Debe ingresar un numero de indice valido")
         else:
@@ -44,15 +43,16 @@ class Profesor(Usuario):
     def __str__(self) -> str:
         return f"El profesor se llama: {self.nombre} {self.apellido} con titulo {self.__titulo}"
     
-    def validar_credenciales(self, email, contrasenia):
-        return self.email == email and self.contrasenia == contrasenia
+    def validar_credenciales(self, email:str, contrasenia:str) -> bool:
+        return self.email.upper() == email.upper() and self.contrasenia == contrasenia
 
-    def dictar_cursos(self,nombre_curso):
+    def dictar_cursos(self,nombre_curso:str) -> str:
         curso = Curso(nombre_curso) 
-        self.__mis_cursos.append(curso)
-        cursos.append(curso)
-        return curso
-    
-
-
-
+        for cur in cursos:
+            if cur.nombre.upper() == nombre_curso.upper():
+                return print(f"El curso {nombre_curso} ya se encuentra cargado")
+        else:
+            self.__mis_cursos.append(curso)
+            cursos.append(curso)
+            print(f"Curso dado de alta exitosamente:\nNombre: {nombre_curso}\nCódigo:{curso.codigo} \nContraseña: {curso.contrasenia_matricula}")
+            return curso

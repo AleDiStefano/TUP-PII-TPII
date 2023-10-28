@@ -16,7 +16,7 @@ class Estudiante(Usuario):
     def legajo(self) -> str:
         return self.__legajo.title()
     @legajo.setter
-    def legajo(self, nuevo_legajo: str):
+    def legajo(self, nuevo_legajo: str) -> None:
         self.__legajo = nuevo_legajo
     
     @property
@@ -24,26 +24,28 @@ class Estudiante(Usuario):
         return self.__anio_inscripcion_carrera.title()
     
     @anio_inscripcion_carrera.setter
-    def anio_inscripcion_carrera(self, nuevo_anio_inscripcion_carrera: str):
+    def anio_inscripcion_carrera(self, nuevo_anio_inscripcion_carrera: str) -> None:
         self.__anio_inscripcion_carrera = nuevo_anio_inscripcion_carrera
     
     @property
-    def mis_cursos(self):
+    def mis_cursos(self)-> str:
         if self.__mis_cursos: 
             while True:
                 indice = 0
-                print("Ingrese que curso desea ver")
+                print("Ingrese la opcion ")
                 for indice,curso in enumerate(self.__mis_cursos):
                     print(f"{indice + 1} - {curso}")
                 opcion = int(input())
                 if opcion >= 1 and opcion <= indice + 1:
-                    return f"Nombre: {self.__mis_cursos[opcion - 1]}" # Esto tiene devolver solo el nombre del curso, sin la contraseña
+                    # return f"Nombre: {self.__mis_cursos[opcion - 1]}"
+                    # Para desmatricularme necesito solo el nombre, para realizar el remove
+                    return self.__mis_cursos[opcion - 1]
                 else:
                     print("Debe ingresar un numero de indice valido")
         else:
             return "Usted no se encuentra anotado a ningun curso"
 
-    def matricular_en_curso(self,curso,contrasenia):
+    def matricular_en_curso(self,curso:str,contrasenia:str)  -> None:
         curso_valido = False
         if curso in self.__mis_cursos:
             print(f"Usted ya se encuentra inscripto en {curso}")
@@ -57,10 +59,11 @@ class Estudiante(Usuario):
                 print("Curso agregado con exito") 
             else:
                 print("La contraseña es invalida")
+    
+    def desmatricular_curso(self,curso:str)  -> str:
+        self.__mis_cursos.remove(curso)
+        return "Curso elimnado exitosamente"
 
-    def validar_credenciales(self, email, contrasenia):
-        return self.email == email and self.contrasenia == contrasenia
 
-
-
-
+    def validar_credenciales(self, email:str, contrasenia:str) -> bool:
+        return self.email.upper() == email.upper() and self.contrasenia == contrasenia
