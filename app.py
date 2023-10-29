@@ -2,6 +2,7 @@ from archivo import *
 from curso import *
 from data import *
 from data_cursos import *
+from data_carreras import *
 from datetime import *
 from estudiante import *
 from profesor import *
@@ -45,12 +46,20 @@ while True:
                     if opcion == 1:
                         while True:
                             print("Seleccione el curso")
-                            for indice,curso in enumerate(cursos):
-                                # borrar contraseña (es testing)
-                                print(f"{indice + 1} - {curso.nombre} - {curso.contrasenia_matricula}")
-                            op = int(input())
-                            if op >= 1 and op <= 5:
-                                cursoEst = cursos[op-1].nombre
+                            # for indice,curso in enumerate(cursos):
+                            #     # borrar contraseña (es testing)
+                            #     print(f"{indice + 1} - {curso.nombre} - {curso.contrasenia_matricula}")
+                            for estudiante in estudiantes:
+                                if estudiante.email == emailEst:
+                                    carrera = estudiante.get_carrera
+                                    for carrera_iterador in carreras:
+                                        if carrera == carrera_iterador.nombre:
+                                            for index,curso in enumerate(carrera_iterador.curso):
+                                                print(f"{str(index+1)} - {curso.nombre} {curso.contrasenia_matricula}")
+                                    op = int(input())
+                            if op >= 1 and op <= index+1:
+                                # cursoEst = cursos[op-1].nombre
+                                cursoEst = carrera_iterador.curso[op-1].nombre
                                 contraseniaEst = input("Ingrese la matricula del curso: ")
                                 estudiante.matricular_en_curso(cursoEst,contraseniaEst)
                             else:
@@ -62,9 +71,10 @@ while True:
                             if emailEst == estudiantes[i].email:
                                 #curso es igual al nombre del arreglo mis cursos, con eso hago el remove
                                 curso = estudiante.mis_cursos
-                                msg_borrado = estudiante.desmatricular_curso(curso)
-                                print(msg_borrado)
-                            i += 1                 
+                                print(curso)
+                                # msg_borrado = estudiante.desmatricular_curso(curso)
+                                # print(msg_borrado)
+                            i += 1
                     elif opcion == 3:
                         i = 0
                         # ARREGLAR

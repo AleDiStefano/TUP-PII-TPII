@@ -2,8 +2,6 @@ from carrera import *
 from data import *
 from data_cursos import *
 
-
-
 carreras = [
     Carrera("Tecnicatura en Programacion",2),
     Carrera("Ingenieria en Sistemas",5),

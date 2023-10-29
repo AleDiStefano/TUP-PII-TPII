@@ -1,6 +1,6 @@
 from archivo import *
 from curso import *
-from data import *
+# from data import *
 
 cursos = [
     Curso("Programación I"),
