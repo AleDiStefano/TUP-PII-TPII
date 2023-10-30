@@ -51,9 +51,9 @@ class Profesor(Usuario):
         curso = Curso(nombre_curso) 
         for cur in cursos:
             if cur.nombre.upper() == nombre_curso.upper():
-                return print(f"El curso {nombre_curso} ya se encuentra cargado")
+                return print(f"El curso {nombre_curso} ya se encuentra cargado"),False
         else:
             self.__mis_cursos.append(curso)
             cursos.append(curso)
             print(f"Curso dado de alta exitosamente:\nNombre: {nombre_curso}\nCódigo:{curso.codigo} \nContraseña: {curso.contrasenia_matricula}")
-            return curso
+            return curso,True

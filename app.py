@@ -1,4 +1,5 @@
 from archivo import *
+from carrera import * # REVISAR QUE NO PINCHE
 from curso import *
 from data import *
 from data_cursos import *
@@ -74,11 +75,12 @@ while True:
                                 print(msg_borrado)
                             i += 1
                     elif opcion == 3:
-                        i = 0
                         # ARREGLAR
                         # Si no tiene ningun curso tiraba error de que esta variable no estaba definida (se define solo si entra al bucle)
                         # hay que intentar arreglarlo desde la clase de estudiante, pero si no tiene cursos no entra directamente
-                        archivos_ordenados = []
+                        
+                        i = 0
+                        archivos_ordenados = [] 
                         for indice,estudiante in enumerate(estudiantes):
                             if emailEst == estudiantes[i].email:
                                 curso = estudiante.mis_cursos
@@ -86,7 +88,7 @@ while True:
                                     if curso == cursoItera.nombre:
                                         archivos_ordenados = sorted(cursoItera.archivo, key=lambda archivo: archivo.fecha)
                                         for archivo in archivos_ordenados:
-                                           print(archivo)
+                                            print(archivo)
                                 break
                             i += 1
                 else:
@@ -114,9 +116,26 @@ while True:
                         else:
                             print("Ingrese una opcion desde el 1 al 3")
                     if opcion == 1:
-                        nombre_curso = input("Ingrese el nombre del curso que desea dictar: ")
-                        curso_nuevo = profesor.dictar_cursos(nombre_curso)
                         # ARREGLAR: CUANDO DOY DE ALTA EL CURSO NO LO ESTOY DANDO DE ALTA EN LA CARRERA, la mayuscula parecia que estaba gritando perdon JAJJAJAJA
+                        while True:
+                            for index,carrera in enumerate(carreras):
+                                print(f"{str(index+1)} - {carrera.nombre}")
+                            op_carrera = int(input())
+                            if op_carrera >= 1 and op_carrera <= index+1:
+                                break
+                            else:
+                                print("Numero de indice invalido")
+                        carrera_elejida = carreras[op_carrera-1]
+                        
+                        nombre_curso = input("Ingrese el nombre del curso que desea dictar: ")
+                        curso_nuevo,valido = profesor.dictar_cursos(nombre_curso)
+                        if valido:
+                            # Voy a hacer que profesor, ademas de retornar el curso objeto me devuelva un bool, asi solamente se agregue el curso a la carrera si el proceso tuvo exito
+                            carrera_elejida.set_nuevo_curso(curso_nuevo) # Una vez seleccionado el curso recien se valida, hay que ver
+                            # for x in carrera_elejida.curso:
+                            #     print(x)
+                        else:
+                            print("El proceso no tuvo exito")
                     elif opcion == 2:
                         tiene_cursos,mostrarCursoDictado,curso_elejido,lista_cursos = profesor.mis_cursos
                         if tiene_cursos:
