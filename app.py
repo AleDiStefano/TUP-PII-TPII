@@ -177,9 +177,11 @@ while True:
                 print("Código de administrador incorrecto")
         
     elif opt == 3:
-        cursos_ordenados = sorted(cursos, key=lambda curso: curso.nombre,reverse=True )
-        for curso in cursos_ordenados:
-            print(f"Materia:{curso.nombre}       Carrera: Tecnicatura Universitaria en Programación")
-            
+        cursos_ordenados = sorted(cursos, key=lambda curso: curso.nombre,reverse=True)
+        if cursos_ordenados:
+            for curso in cursos_ordenados:
+                print(f"Materia:{curso.nombre}       Carrera: Tecnicatura Universitaria en Programación")
+        else:
+            print("No existen cursos cargados")
     elif opt == 4:
         break
