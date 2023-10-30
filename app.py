@@ -48,8 +48,7 @@ while True:
                                         for carrera_iterador in carreras:
                                             if carrera == carrera_iterador.nombre:
                                                 for index,curso in enumerate(carrera_iterador.curso):
-                                                    # BORRAR {curso.contrasenia_matricula} -------------------------------------------------------------------------------------------------!!!!!!!!!!!! 
-                                                    print(f"{str(index+1)} - {curso.nombre} {curso.contrasenia_matricula}")
+                                                    print(f"{str(index+1)} - {curso.nombre}")
                                         op = int(input())
                                         if op >= 1 and op <= index+1:
                                             cursoEst = carrera_iterador.curso[op-1].nombre
