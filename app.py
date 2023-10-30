@@ -40,59 +40,58 @@ while True:
                         print("4. Volver al menú principal")
                         opcion = int(input())
                         if opcion >= 1 and opcion <= 4:
-                            break
+                            if opcion == 1:
+                                while True:
+                                    print("Seleccione el curso")
+                                    carrera = estudiante.get_carrera
+                                    for carrera_iterador in carreras:
+                                        if carrera == carrera_iterador.nombre:
+                                            for index,curso in enumerate(carrera_iterador.curso):
+                                                # BORRAR {curso.contrasenia_matricula} -------------------------------------------------------------------------------------------------!!!!!!!!!!!! 
+                                                print(f"{str(index+1)} - {curso.nombre} {curso.contrasenia_matricula}")
+                                    op = int(input())
+                                    if op >= 1 and op <= index+1:
+                                        cursoEst = carrera_iterador.curso[op-1].nombre
+                                        contraseniaEst = input("Ingrese la matricula del curso: ")
+                                        msg_agregado = estudiante.matricular_en_curso(cursoEst,contraseniaEst)
+                                        print(msg_agregado)
+                                        break
+                                    else:
+                                        print("Ingrese una opcion desde el 1 al 5")
+                                        
+                            elif opcion == 2:
+                                i = 0
+                                for indice,estudiante in enumerate(estudiantes):
+                                    if emailEst == estudiantes[i].email:
+                                        #curso es igual al nombre del arreglo mis cursos, con eso hago el remove
+                                        curso = estudiante.mis_cursos
+                                        msg_borrado = estudiante.desmatricular_curso(curso)
+                                        print(msg_borrado)
+                                        break
+                                    i += 1
+                                    
+                            elif opcion == 3:
+                                i = 0
+                                posee_cursos = False
+                                archivos_ordenados = [] 
+                                for indice,estudiante in enumerate(estudiantes):
+                                    if emailEst == estudiantes[i].email:
+                                        curso = estudiante.mis_cursos
+                                        for cursoItera in cursos:
+                                            if curso == cursoItera.nombre:
+                                                posee_cursos = True
+                                                archivos_ordenados = sorted(cursoItera.archivo, key=lambda archivo: archivo.fecha)
+                                                for archivo in archivos_ordenados:
+                                                    print(archivo)
+                                        break
+                                    i += 1
+                                    
+                                if not(posee_cursos):
+                                    print("Usted no posee ningun curso")
+                            elif opcion == 4:
+                                break                
                         else:
-                            print("Ingrese una opcion desde el 1 al 4")
-                            
-                    if opcion == 1:
-                        while True:
-                            print("Seleccione el curso")
-                            carrera = estudiante.get_carrera
-                            for carrera_iterador in carreras:
-                                if carrera == carrera_iterador.nombre:
-                                    for index,curso in enumerate(carrera_iterador.curso):
-                                        # BORRAR {curso.contrasenia_matricula} -------------------------------------------------------------------------------------------------!!!!!!!!!!!! 
-                                        print(f"{str(index+1)} - {curso.nombre} {curso.contrasenia_matricula}")
-                            op = int(input())
-                            if op >= 1 and op <= index+1:
-                                cursoEst = carrera_iterador.curso[op-1].nombre
-                                contraseniaEst = input("Ingrese la matricula del curso: ")
-                                msg_agregado = estudiante.matricular_en_curso(cursoEst,contraseniaEst)
-                                print(msg_agregado)
-                            else:
-                                print("Ingrese una opcion desde el 1 al 5")
-                        
-                    elif opcion == 2:
-                        i = 0
-                        for indice,estudiante in enumerate(estudiantes):
-                            if emailEst == estudiantes[i].email:
-                                #curso es igual al nombre del arreglo mis cursos, con eso hago el remove
-                                curso = estudiante.mis_cursos
-                                msg_borrado = estudiante.desmatricular_curso(curso)
-                                print(msg_borrado)
-                            i += 1
-                            
-                    elif opcion == 3:
-                        i = 0
-                        archivos_ordenados = [] 
-                        for indice,estudiante in enumerate(estudiantes):
-                            if emailEst == estudiantes[i].email:
-                                curso = estudiante.mis_cursos
-                                for cursoItera in cursos:
-                                    posee_cursos = False
-                                    if curso == cursoItera.nombre:
-                                        posee_cursos = True
-                                        archivos_ordenados = sorted(cursoItera.archivo, key=lambda archivo: archivo.fecha)
-                                        for archivo in archivos_ordenados:
-                                            print(archivo)
-                                break
-                            i += 1
-                            
-                        if not(posee_cursos):
-                            print("Usted no posee ningun curso")
-                            
-                    elif opcion == 4:
-                        break
+                            print("Ingrese una opcion desde el 1 al 4")    
                 else:
                     print("Error de ingreso, por favor intente nuevamente")
         if encontrado == False:
@@ -114,46 +113,45 @@ while True:
                         print("3. Volver al menú principal")
                         opcion = int(input())
                         if opcion >= 1 and opcion <= 3:
-                            break
+                            if opcion == 1:
+                                while True:
+                                    for index,carrera in enumerate(carreras):
+                                        print(f"{str(index+1)} - {carrera.nombre}")
+                                    op_carrera = int(input())
+                                    if op_carrera >= 1 and op_carrera <= index+1:
+                                        break
+                                    else:
+                                        print("Numero de indice invalido")
+                                carrera_elejida = carreras[op_carrera-1]
+                                
+                                nombre_curso = input("Ingrese el nombre del curso que desea dictar: ")
+                                curso_nuevo,valido = profesor.dictar_cursos(nombre_curso)
+                                if valido:
+                                    # Voy a hacer que profesor, ademas de retornar el curso objeto me devuelva un bool, asi solamente se agregue el curso a la carrera si el proceso tuvo exito
+                                    carrera_elejida.set_nuevo_curso(curso_nuevo) # Una vez seleccionado el curso recien se valida, hay que ver
+                                else:
+                                    print("El proceso no tuvo exito")
+                            elif opcion == 2:
+                                tiene_cursos,mostrarCursoDictado,curso_elejido,lista_cursos = profesor.mis_cursos
+                                if tiene_cursos:
+                                    print(mostrarCursoDictado)
+                                    op = input("\nDesea ingresar un archivo adjunto? S/N: ").upper()
+                                    if op == "S":
+                                        nombre_archivo = input("Ingrese el nombre: ")
+                                        formato_archivo = input("Ingrese el formato: ")
+                                        nombre_archivo = f"{nombre_archivo}.{formato_archivo}"
+                                        lista_cursos[curso_elejido].nuevo_archivo(Archivo(nombre_archivo,formato_archivo))
+                                        # break
+                                    # elif op == "N":
+                                    #     # break
+                                    # else:
+                                    #     print("Opcion invalida")
+                                else:
+                                    print("Usted no a dictado ningun curso")
+                            elif opcion == 3:
+                                break
                         else:
                             print("Ingrese una opcion desde el 1 al 3")
-                    if opcion == 1:
-                        while True:
-                            for index,carrera in enumerate(carreras):
-                                print(f"{str(index+1)} - {carrera.nombre}")
-                            op_carrera = int(input())
-                            if op_carrera >= 1 and op_carrera <= index+1:
-                                break
-                            else:
-                                print("Numero de indice invalido")
-                        carrera_elejida = carreras[op_carrera-1]
-                        
-                        nombre_curso = input("Ingrese el nombre del curso que desea dictar: ")
-                        curso_nuevo,valido = profesor.dictar_cursos(nombre_curso)
-                        if valido:
-                            # Voy a hacer que profesor, ademas de retornar el curso objeto me devuelva un bool, asi solamente se agregue el curso a la carrera si el proceso tuvo exito
-                            carrera_elejida.set_nuevo_curso(curso_nuevo) # Una vez seleccionado el curso recien se valida, hay que ver
-                        else:
-                            print("El proceso no tuvo exito")
-                    elif opcion == 2:
-                        tiene_cursos,mostrarCursoDictado,curso_elejido,lista_cursos = profesor.mis_cursos
-                        if tiene_cursos:
-                            print(mostrarCursoDictado)
-                            op = input("\n Desea ingresar un archivo adjunto? S/N: ").upper()
-                            if op == "S":
-                                nombre_archivo = input("Ingrese el nombre: ")
-                                formato_archivo = input("Ingrese el formato: ")
-                                nombre_archivo = f"{nombre_archivo}.{formato_archivo}"
-                                lista_cursos[curso_elejido].nuevo_archivo(Archivo(nombre_archivo,formato_archivo))
-                                break
-                            elif op == "N":
-                                break
-                            else:
-                                print("Opcion invalida")
-                        else:
-                            print("Usted no a dictado ningun curso")
-                    elif opcion == 3:
-                        break
                 else:
                     print("Error de ingreso, por favor intente nuevamente")
                     
