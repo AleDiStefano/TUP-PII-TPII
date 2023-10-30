@@ -41,35 +41,40 @@ while True:
                         opcion = int(input())
                         if opcion >= 1 and opcion <= 4:
                             if opcion == 1:
-                                while True:
-                                    print("Seleccione el curso")
-                                    carrera = estudiante.get_carrera
-                                    for carrera_iterador in carreras:
-                                        if carrera == carrera_iterador.nombre:
-                                            for index,curso in enumerate(carrera_iterador.curso):
-                                                # BORRAR {curso.contrasenia_matricula} -------------------------------------------------------------------------------------------------!!!!!!!!!!!! 
-                                                print(f"{str(index+1)} - {curso.nombre} {curso.contrasenia_matricula}")
-                                    op = int(input())
-                                    if op >= 1 and op <= index+1:
-                                        cursoEst = carrera_iterador.curso[op-1].nombre
-                                        contraseniaEst = input("Ingrese la matricula del curso: ")
-                                        msg_agregado = estudiante.matricular_en_curso(cursoEst,contraseniaEst)
-                                        print(msg_agregado)
-                                        break
-                                    else:
-                                        print("Ingrese una opcion desde el 1 al 5")
+                                if cursos:
+                                    while True:
+                                        print("Seleccione el curso")
+                                        carrera = estudiante.get_carrera
+                                        for carrera_iterador in carreras:
+                                            if carrera == carrera_iterador.nombre:
+                                                for index,curso in enumerate(carrera_iterador.curso):
+                                                    # BORRAR {curso.contrasenia_matricula} -------------------------------------------------------------------------------------------------!!!!!!!!!!!! 
+                                                    print(f"{str(index+1)} - {curso.nombre} {curso.contrasenia_matricula}")
+                                        op = int(input())
+                                        if op >= 1 and op <= index+1:
+                                            cursoEst = carrera_iterador.curso[op-1].nombre
+                                            contraseniaEst = input("Ingrese la matricula del curso: ")
+                                            msg_agregado = estudiante.matricular_en_curso(cursoEst,contraseniaEst)
+                                            print(msg_agregado)
+                                            break
+                                        else:
+                                            print("Ingrese una opcion desde el 1 al 5")
+                                else:
+                                    print("No existen cursos cargados")
                                         
                             elif opcion == 2:
-                                i = 0
-                                for indice,estudiante in enumerate(estudiantes):
-                                    if emailEst == estudiantes[i].email:
-                                        #curso es igual al nombre del arreglo mis cursos, con eso hago el remove
-                                        curso = estudiante.mis_cursos
-                                        msg_borrado = estudiante.desmatricular_curso(curso)
-                                        print(msg_borrado)
-                                        break
-                                    i += 1
-                                    
+                                if cursos:
+                                    i = 0
+                                    for indice,estudiante in enumerate(estudiantes):
+                                        if emailEst == estudiantes[i].email:
+                                            #curso es igual al nombre del arreglo mis cursos, con eso hago el remove
+                                            curso = estudiante.mis_cursos
+                                            msg_borrado = estudiante.desmatricular_curso(curso)
+                                            print(msg_borrado)
+                                            break
+                                        i += 1
+                                else:
+                                    print("No posee cursos")
                             elif opcion == 3:
                                 i = 0
                                 posee_cursos = False
@@ -81,8 +86,11 @@ while True:
                                             if curso == cursoItera.nombre:
                                                 posee_cursos = True
                                                 archivos_ordenados = sorted(cursoItera.archivo, key=lambda archivo: archivo.fecha)
-                                                for archivo in archivos_ordenados:
-                                                    print(archivo)
+                                                if archivos_ordenados:
+                                                    for archivo in archivos_ordenados:
+                                                        print(archivo)
+                                                else:
+                                                    print("El curso no posee archivos")
                                         break
                                     i += 1
                                     
@@ -169,7 +177,7 @@ while True:
                 print("Código de administrador incorrecto")
         
     elif opt == 3:
-        cursos_ordenados = sorted(cursos, key=lambda curso: curso.nombre)
+        cursos_ordenados = sorted(cursos, key=lambda curso: curso.nombre,reverse=True )
         for curso in cursos_ordenados:
             print(f"Materia:{curso.nombre}       Carrera: Tecnicatura Universitaria en Programación")
             

@@ -5,9 +5,9 @@ from carrera import *
 
 
 estudiantes = [
-    Estudiante("Gaston", "Koch", "gaston@gmail.com", "gaston1", 1, 2020,Carrera("Tecnicatura en Programacion",2)),
-    Estudiante("Alejandro", "Di Stefano", "alejandro@gmail.com", "aleandro2", 2, 2019,Carrera("Tecnicatura en Programacion",2)),
-    Estudiante("Julian", "Becerra", "julian@gmail.com", "julian3", 3, 2021,Carrera("Ingenieria en Sistemas",5)),
+    Estudiante("Gaston", "Koch", "gaston@gmail.com", "gaston1", 1, 2020,Carrera("Analista en Sistemas",3)),
+    Estudiante("Alejandro", "Di Stefano", "alejandro@gmail.com", "aleandro2", 2, 2019,Carrera("Analista en Sistemas",3)),
+    Estudiante("Julian", "Becerra", "julian@gmail.com", "julian3", 3, 2021,Carrera("Analista en Sistemas",3)),
     Estudiante("Juan", "Perez", "j", "j", 4, 2018,Carrera("Analista en Sistemas",3)),
     Estudiante("Arturo", "Vidal", "arturo@gmail.com", "arturo5", 5,2018,Carrera("Analista en Sistemas",3)),
     Estudiante("Enzo", "Perez", "enzo@gmail.com", "enzo6", 6, 2017,Carrera("Analista en Sistemas",3))

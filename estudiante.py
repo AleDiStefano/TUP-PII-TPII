@@ -64,34 +64,6 @@ class Estudiante(Usuario):
                     self.__mis_cursos.append(curso)
                     return "Curso agregado con exito"
         return "La contraseña es invalida"
-       
-        
-        
-        # curso_valido = False
-        # if curso in self.__mis_cursos:
-        #     print(f"Usted ya se encuentra inscripto en {curso}")
-        # else:
-        #     for i in cursos:
-        #         if i.nombre == curso and i.contrasenia_matricula == contrasenia:
-        #             self.__mis_cursos.append(curso)
-        #             curso_valido = True
-        #             break
-        
-        # Arreglar que filtre si el curso que queremos agregar esta en la misma carrera que el estudiante
-        # Tuve quilombo con el import de carreras (ojo que rompe el data_carreras)
-        
-        # else:
-        #     for i in cursos:
-        #         if i.nombre == curso and i.contrasenia_matricula == contrasenia:
-        #             for carrera in carreras:
-        #                 if i.nombre in carrera.curso and self.legajo in carrera.estudiantes:
-        #                     self.__mis_cursos.append(curso)
-        #                     curso_valido = True
-        #                     break
-            # if (curso_valido):
-            #     print("Curso agregado con exito") 
-            # else:
-            #     print("La contraseña es invalida")
     
     def desmatricular_curso(self,curso:str)  -> str:
         self.__mis_cursos.remove(curso)
