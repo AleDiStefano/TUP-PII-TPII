@@ -49,19 +49,18 @@ while True:
                             # for indice,curso in enumerate(cursos):
                             #     # borrar contraseña (es testing)
                             #     print(f"{indice + 1} - {curso.nombre} - {curso.contrasenia_matricula}")
-                            for estudiante in estudiantes:
-                                if estudiante.email == emailEst:
-                                    carrera = estudiante.get_carrera
-                                    for carrera_iterador in carreras:
-                                        if carrera == carrera_iterador.nombre:
-                                            for index,curso in enumerate(carrera_iterador.curso):
-                                                print(f"{str(index+1)} - {curso.nombre} {curso.contrasenia_matricula}")
-                                    op = int(input())
+                            carrera = estudiante.get_carrera
+                            for carrera_iterador in carreras:
+                                if carrera == carrera_iterador.nombre:
+                                    for index,curso in enumerate(carrera_iterador.curso):
+                                        print(f"{str(index+1)} - {curso.nombre} {curso.contrasenia_matricula}")
+                            op = int(input())
                             if op >= 1 and op <= index+1:
                                 # cursoEst = cursos[op-1].nombre
                                 cursoEst = carrera_iterador.curso[op-1].nombre
                                 contraseniaEst = input("Ingrese la matricula del curso: ")
-                                estudiante.matricular_en_curso(cursoEst,contraseniaEst)
+                                msg_agregado = estudiante.matricular_en_curso(cursoEst,contraseniaEst)
+                                print(msg_agregado)
                             else:
                                 print("Ingrese una opcion desde el 1 al 5")
                             break
@@ -71,9 +70,8 @@ while True:
                             if emailEst == estudiantes[i].email:
                                 #curso es igual al nombre del arreglo mis cursos, con eso hago el remove
                                 curso = estudiante.mis_cursos
-                                print(curso)
-                                # msg_borrado = estudiante.desmatricular_curso(curso)
-                                # print(msg_borrado)
+                                msg_borrado = estudiante.desmatricular_curso(curso)
+                                print(msg_borrado)
                             i += 1
                     elif opcion == 3:
                         i = 0
@@ -86,17 +84,13 @@ while True:
                                 curso = estudiante.mis_cursos
                                 for cursoItera in cursos:
                                     if curso == cursoItera.nombre:
-                                        for archivo in cursoItera.archivo:
-                                            archivos_ordenados = sorted(cursoItera.archivo, key=lambda archivo: archivo.fecha)
-                                # este break hace que corte la iteración una vez que encuentra el estudiante
+                                        archivos_ordenados = sorted(cursoItera.archivo, key=lambda archivo: archivo.fecha)
+                                        for archivo in archivos_ordenados:
+                                           print(archivo)
                                 break
                             i += 1
-                        for archivo_ordenado in archivos_ordenados:
-                            # ARREGLAR no esta funcionando el print de los archivos
-                            print(archivos_ordenados)
                 else:
                     print("Error de ingreso, por favor intente nuevamente")
-                
         if encontrado == False:
             print("Usuario no cargado, debe darse de alta en el alumnado")
             

@@ -40,8 +40,6 @@ class Estudiante(Usuario):
     
     @property
     def mis_cursos(self)-> str:
-        print("a")
-        print(len(self.__mis_cursos))
         if self.__mis_cursos: 
             while True:
                 indice = 0
@@ -58,20 +56,15 @@ class Estudiante(Usuario):
             return "Usted no se encuentra anotado a ningun curso"
     
     def matricular_en_curso(self,curso:str,contrasenia:str)  -> None:
-        curso_valido = False
         if curso in self.__mis_cursos:
             print(f"Usted ya se encuentra inscripto en {curso}")
         else:
             for i in cursos:
                 if i.nombre == curso and i.contrasenia_matricula == contrasenia:
                     self.__mis_cursos.append(curso)
-                    curso_valido = True
-                    break
-                
-        if (curso_valido):
-            return "Curso agregado con exito"
-        else:
-            return "La contraseña es invalida"
+                    return "Curso agregado con exito"
+        return "La contraseña es invalida"
+       
         
         
         # curso_valido = False
