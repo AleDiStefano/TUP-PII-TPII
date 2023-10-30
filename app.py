@@ -42,29 +42,26 @@ while True:
                         if opcion >= 1 and opcion <= 4:
                             break
                         else:
-                            print("Ingrese una opcion desde el 1 al 3")
+                            print("Ingrese una opcion desde el 1 al 4")
                             
                     if opcion == 1:
                         while True:
                             print("Seleccione el curso")
-                            # for indice,curso in enumerate(cursos):
-                            #     # borrar contraseña (es testing)
-                            #     print(f"{indice + 1} - {curso.nombre} - {curso.contrasenia_matricula}")
                             carrera = estudiante.get_carrera
                             for carrera_iterador in carreras:
                                 if carrera == carrera_iterador.nombre:
                                     for index,curso in enumerate(carrera_iterador.curso):
+                                        # BORRAR {curso.contrasenia_matricula} -------------------------------------------------------------------------------------------------!!!!!!!!!!!! 
                                         print(f"{str(index+1)} - {curso.nombre} {curso.contrasenia_matricula}")
                             op = int(input())
                             if op >= 1 and op <= index+1:
-                                # cursoEst = cursos[op-1].nombre
                                 cursoEst = carrera_iterador.curso[op-1].nombre
                                 contraseniaEst = input("Ingrese la matricula del curso: ")
                                 msg_agregado = estudiante.matricular_en_curso(cursoEst,contraseniaEst)
                                 print(msg_agregado)
                             else:
                                 print("Ingrese una opcion desde el 1 al 5")
-                            break
+                        
                     elif opcion == 2:
                         i = 0
                         for indice,estudiante in enumerate(estudiantes):
@@ -74,23 +71,28 @@ while True:
                                 msg_borrado = estudiante.desmatricular_curso(curso)
                                 print(msg_borrado)
                             i += 1
+                            
                     elif opcion == 3:
-                        # ARREGLAR
-                        # Si no tiene ningun curso tiraba error de que esta variable no estaba definida (se define solo si entra al bucle)
-                        # hay que intentar arreglarlo desde la clase de estudiante, pero si no tiene cursos no entra directamente
-                        
                         i = 0
                         archivos_ordenados = [] 
                         for indice,estudiante in enumerate(estudiantes):
                             if emailEst == estudiantes[i].email:
                                 curso = estudiante.mis_cursos
                                 for cursoItera in cursos:
+                                    posee_cursos = False
                                     if curso == cursoItera.nombre:
+                                        posee_cursos = True
                                         archivos_ordenados = sorted(cursoItera.archivo, key=lambda archivo: archivo.fecha)
                                         for archivo in archivos_ordenados:
                                             print(archivo)
                                 break
                             i += 1
+                            
+                        if not(posee_cursos):
+                            print("Usted no posee ningun curso")
+                            
+                    elif opcion == 4:
+                        break
                 else:
                     print("Error de ingreso, por favor intente nuevamente")
         if encontrado == False:
@@ -116,7 +118,6 @@ while True:
                         else:
                             print("Ingrese una opcion desde el 1 al 3")
                     if opcion == 1:
-                        # ARREGLAR: CUANDO DOY DE ALTA EL CURSO NO LO ESTOY DANDO DE ALTA EN LA CARRERA, la mayuscula parecia que estaba gritando perdon JAJJAJAJA
                         while True:
                             for index,carrera in enumerate(carreras):
                                 print(f"{str(index+1)} - {carrera.nombre}")
@@ -132,8 +133,6 @@ while True:
                         if valido:
                             # Voy a hacer que profesor, ademas de retornar el curso objeto me devuelva un bool, asi solamente se agregue el curso a la carrera si el proceso tuvo exito
                             carrera_elejida.set_nuevo_curso(curso_nuevo) # Una vez seleccionado el curso recien se valida, hay que ver
-                            # for x in carrera_elejida.curso:
-                            #     print(x)
                         else:
                             print("El proceso no tuvo exito")
                     elif opcion == 2:
