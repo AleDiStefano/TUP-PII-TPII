@@ -34,7 +34,7 @@ class Carrera:
         return self.__estudiantes
     
     # Al intentar utilizar sus setters para realizar un append, me daba error.
-    # Por lo que cree metodos para relazar la agregacion
+    # Por lo que cree metodos para poder agregar
     
     # @curso.setter
     # def curso(self,nuevo_curso) ->None:

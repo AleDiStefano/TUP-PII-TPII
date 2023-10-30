@@ -2,7 +2,7 @@ from archivo import *
 from curso import *
 # from data import *
 
-# SE UTILIZARON ESTOS DATOS PARA TESTEAR
+# SE UTILIZARON LOS DATOS COMENTADOS PARA TESTEAR
 
 cursos = [
     # Curso("Programación I"),

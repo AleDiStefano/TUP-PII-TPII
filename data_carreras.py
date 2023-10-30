@@ -2,7 +2,7 @@ from carrera import *
 from data import *
 from data_cursos import *
 
-# SE UTILIZARON ESTOS DATOS PARA TESTEAR
+# SE UTILIZARON LOS DATOS COMENTADOS PARA TESTEAR
 
 carreras = [
     # Carrera("Tecnicatura en Programacion",2),

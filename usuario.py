@@ -1,12 +1,6 @@
 from abc import ABC, abstractmethod
 
 class Usuario(ABC):
-    # def __init__(self, nombre: str, apellido: str, email: str, contrasenia: str) -> None:
-    #     self._nombre = nombre
-    #     self._apellido = apellido
-    #     self._email = email
-    #     self._contrasenia = contrasenia
-    
     # De esta manera nos aseguramos que el mail es unique
     __mail_disponibles = set()
     
